@@ -17,6 +17,7 @@ export const useDataSync = () => {
   const blockchain = useBlockchain()
   const isInitialized = useRef(false)
   const fetchPromises = useRef(new Map())
+  const lastDataRef = useRef({})
 
   // Generic fetch wrapper to prevent duplicate requests
   const fetchWithDeduplication = useCallback(async (key, fetchFunction, ...args) => {

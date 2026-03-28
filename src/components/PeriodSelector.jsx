@@ -1,9 +1,10 @@
 import { useData } from '../contexts/DataContext'
+import { memo } from 'react'
 
 // Fixed period options - exactly as specified in correct order
 const PERIOD_OPTIONS = ['24H', '7D', '30D', 'ALL']
 
-const PeriodSelector = () => {
+const PeriodSelector = memo(() => {
   const { state, actions } = useData()
 
   const handlePeriodChange = (period) => {
@@ -72,6 +73,8 @@ const PeriodSelector = () => {
       ))}
     </div>
   )
-}
+})
+
+PeriodSelector.displayName = 'PeriodSelector'
 
 export default PeriodSelector

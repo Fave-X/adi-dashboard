@@ -70,6 +70,7 @@ function App() {
         {/* Global Time Frame Selector */}
         <div style={{ marginBottom: '16px' }}>
           <PeriodSelector />
+        </div>
 
         {/* Tab Navigation */}
         <div style={{ backgroundColor: '#080c14', borderBottom: '1px solid rgba(255,255,255,0.06)', position: 'sticky', top: 0, zIndex: 40 }}>

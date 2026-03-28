@@ -62,15 +62,14 @@ function App() {
         {/* Key Metrics Bar */}
         <KeyMetricsBar />
         
+        {/* Last Updated timestamp with animated refresh spinner */}
+        <div style={{ marginBottom: '16px', textAlign: 'right' }}>
+          <LastUpdated />
+        </div>
+        
         {/* Global Time Frame Selector */}
         <div style={{ marginBottom: '16px' }}>
           <PeriodSelector />
-          
-          {/* Last Updated timestamp with animated spinner */}
-          <div style={{ textAlign: 'right', marginTop: '4px' }}>
-            <LastUpdated />
-          </div>
-        </div>
 
         {/* Tab Navigation */}
         <div style={{ backgroundColor: '#080c14', borderBottom: '1px solid rgba(255,255,255,0.06)', position: 'sticky', top: 0, zIndex: 40 }}>

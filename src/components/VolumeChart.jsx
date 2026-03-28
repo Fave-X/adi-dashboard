@@ -108,7 +108,7 @@ const VolumeChart = () => {
   }
 
   // Show stat card for 24H if insufficient data
-  if (!state.blockscout.loading && !state.blockscout.error && state.selectedPeriod === '24H' && chartData.length <= 1) {
+  if (!state.blockscout.loading && !state.blockscout.error && state.selectedPeriod === '24H') {
     const todayValue = chartData[0]?.value ?? 0
     const todayDate = chartData[0]?.date
       ? new Date(chartData[0].date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })

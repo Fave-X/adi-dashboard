@@ -1,6 +1,6 @@
 import { useData } from '../contexts/DataContext'
 
-// Fixed period options - exactly as specified
+// Fixed period options - exactly as specified in correct order
 const PERIOD_OPTIONS = ['24H', '7D', '30D', 'ALL']
 
 const PeriodSelector = () => {

@@ -107,8 +107,8 @@ const VolumeChart = () => {
     },
   }
 
-  // Show stat card for 24H if insufficient data
-  if (!state.blockscout.loading && !state.blockscout.error && state.selectedPeriod === '24H') {
+  // Show stat card for 24H if insufficient data points for meaningful chart
+  if (!state.blockscout.loading && !state.blockscout.error && state.selectedPeriod === '24H' && chartData.length <= 2) {
     const todayValue = chartData[0]?.value ?? 0
     const todayDate = chartData[0]?.date
       ? new Date(chartData[0].date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
@@ -121,6 +121,19 @@ const VolumeChart = () => {
           ${(todayValue / 1_000_000).toFixed(2)}M
         </div>
         <div style={{ color: '#7a8fad', fontSize: '13px', fontFamily: 'Inter, sans-serif' }}>volume today</div>
+      </div>
+    )
+  }
+
+  // For 24H with sufficient data points, show individual hourly distribution
+  if (!state.blockscout.loading && !state.blockscout.error && state.selectedPeriod === '24H' && chartData.length > 2) {
+    return (
+      <div style={{ height: '256px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#111827', borderRadius: '8px', padding: '24px' }}>
+        <div style={{ color: '#7a8fad', fontSize: '12px', marginBottom: '8px', fontFamily: 'Inter, sans-serif' }}>24H Volume Distribution</div>
+        <div style={{ color: '#e8b84b', fontSize: '48px', fontWeight: 'bold', fontFamily: 'DM Mono, monospace', marginBottom: '8px' }}>
+          {chartData.length} hourly data points
+        </div>
+        <div style={{ color: '#7a8fad', fontSize: '13px', fontFamily: 'Inter, sans-serif' }}>showing individual hours</div>
       </div>
     )
   }

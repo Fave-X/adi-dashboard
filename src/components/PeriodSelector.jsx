@@ -17,9 +17,10 @@ const PeriodSelector = memo(() => {
   return (
     <div style={{ 
       display: 'flex', 
+      flexDirection: 'row',
       flexWrap: 'wrap',
       justifyContent: 'flex-end',
-      gap: '8px',
+      gap: '4px',
       marginBottom: '8px',
       width: '100%'
     }}>

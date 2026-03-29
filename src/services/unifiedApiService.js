@@ -197,7 +197,18 @@ export const fetchCoinGeckoCurrent = async () => {
     return processed
   } catch (error) {
     console.error('CoinGecko current fetch failed:', error)
-    throw error
+    
+    // Return fallback data to prevent UI crashes
+    const fallbackData = {
+      price: 0.05, // Fallback price
+      lastUpdated: Date.now(),
+      isFallback: true,
+      error: error.message
+    }
+    
+    // Cache fallback data for 5 minutes
+    setCachedData(cacheKey, fallbackData, 300000)
+    return fallbackData
   }
 }
 
@@ -251,7 +262,19 @@ export const fetchCoinGeckoHistory = async (period) => {
     return processed
   } catch (error) {
     console.error(`CoinGecko history fetch failed for ${period}:`, error)
-    throw error
+    
+    // Return fallback data to prevent UI crashes
+    const fallbackData = {
+      prices: [],
+      period,
+      lastUpdated: Date.now(),
+      isFallback: true,
+      error: error.message
+    }
+    
+    // Cache fallback data for 5 minutes
+    setCachedData(cacheKey, fallbackData, 300000)
+    return fallbackData
   }
 }
 
@@ -283,7 +306,18 @@ export const fetchCoinGeckoMarkets = async () => {
     return processed
   } catch (error) {
     console.error('CoinGecko markets fetch failed:', error)
-    throw error
+    
+    // Return fallback data to prevent UI crashes
+    const fallbackData = {
+      markets: [],
+      lastUpdated: Date.now(),
+      isFallback: true,
+      error: error.message
+    }
+    
+    // Cache fallback data for 5 minutes
+    setCachedData(cacheKey, fallbackData, 300000)
+    return fallbackData
   }
 }
 

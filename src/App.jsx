@@ -67,19 +67,8 @@ function AppContent() {
                   transition: 'all 0.3s',
                   color: activeTab === tab.id ? '#e8b84b' : '#7a8fad',
                   borderBottom: activeTab === tab.id ? '2px solid #e8b84b' : 'none',
-                  border: 'none',
                   cursor: 'pointer',
-                  backgroundColor: 'transparent',
-                  outline: 'none'
-                }}
-                onFocus={(e) => {
-                  e.target.style.boxShadow = '0 0 0 3px rgba(232, 184, 75, 0.5)'
-                  e.target.style.outline = '2px solid #e8b84b'
-                  e.target.style.outlineOffset = '2px'
-                }}
-                onBlur={(e) => {
-                  e.target.style.boxShadow = 'none'
-                  e.target.style.outline = 'none'
+                  backgroundColor: 'transparent'
                 }}
               >
                 {tab.label}

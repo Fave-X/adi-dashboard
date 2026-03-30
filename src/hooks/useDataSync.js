@@ -138,11 +138,11 @@ export const useDataSync = () => {
 
   // Initial data fetch
   useEffect(() => {
-    if (!isInitialized.current) {
+    if (!isInitialized.current && blockchain.isInitialized) {
       isInitialized.current = true
       syncAllData()
     }
-  }, [syncAllData])
+  }, [syncAllData, blockchain.isInitialized])
 
   // Set up polling intervals
   useEffect(() => {

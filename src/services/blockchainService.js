@@ -96,7 +96,8 @@ class BlockchainService {
     }
 
     if (!this.checkCircuitBreaker()) {
-      throw new Error('Circuit breaker is OPEN - blocking provider initialization')
+      console.warn('⚠️ Circuit breaker is OPEN - skipping provider initialization, returning null provider')
+      return null
     }
 
     this.isConnecting = true

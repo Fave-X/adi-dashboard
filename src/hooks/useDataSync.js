@@ -185,9 +185,9 @@ export const useDataSync = () => {
     // RPC: Poll every 30 seconds using blockchain service status
     const rpcInterval = setInterval(() => {
       const blockchainStatus = getBlockchainStatus()
-      
-      // Only poll if blockchain service is healthy
-      if (blockchainStatus.isConnected && blockchainStatus.circuitBreakerState === 'CLOSED') {
+
+      // Poll if blockchain is connected, or allow recovery when disconnected
+      if (blockchainStatus.isConnected) {
         fetchWithDeduplication('rpc_data', fetchRPCData)
           .then(data => {
             actions.setRPCData(data)

@@ -11,16 +11,16 @@ export const useBlockchain = () => {
   // Initialize blockchain service
   const initialize = useCallback(async () => {
     if (!mountedRef.current) return
-    
+
     try {
       setError(null)
       setStatus('initializing')
-      
-      await blockchainService.initializeProvider()
+
+      const provider = await blockchainService.initializeProvider()
       setIsInitialized(true)
-      setStatus('connected')
-      
-      console.log('✅ Blockchain service initialized successfully')
+      setStatus(provider ? 'connected' : 'disconnected')
+
+      console.log(provider ? '✅ Blockchain service initialized successfully' : '⚠️ Blockchain service initialized with no provider')
     } catch (err) {
       console.error('❌ Blockchain service initialization failed:', err)
       setError(err.message)
@@ -106,7 +106,7 @@ export const useBlockchain = () => {
     const statusInterval = setInterval(() => {
       if (mountedRef.current) {
         const currentStatus = getCurrentStatus()
-        setStatus(currentStatus.circuitBreakerState === 'CLOSED' ? 'connected' : 'degraded')
+        setStatus(currentStatus.isConnected ? 'connected' : 'disconnected')
       }
     }, 5000) // Update status every 5 seconds
 

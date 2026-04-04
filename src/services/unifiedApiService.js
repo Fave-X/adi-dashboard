@@ -46,16 +46,16 @@ const setCachedData = (key, data) => {
 const checkCircuitBreaker = (service) => {
   const breaker = circuitBreaker[service]
   const now = Date.now()
-  
+
   if (breaker.state === 'OPEN') {
     if (now - breaker.lastFailure > CIRCUIT_BREAKER_TIMEOUT) {
       breaker.state = 'HALF_OPEN'
       breaker.failures = 0
     } else {
-      throw new Error(`Circuit breaker OPEN for ${service}. Retrying in ${Math.ceil((CIRCUIT_BREAKER_TIMEOUT - (now - breaker.lastFailure)) / 1000)}s`)
+      return null // Circuit still open, caller should handle gracefully
     }
   }
-  
+
   return breaker
 }
 

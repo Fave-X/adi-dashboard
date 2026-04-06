@@ -155,6 +155,8 @@ The dashboard connects to:
 - **Responsive**: Mobile-first design with desktop optimization
 - **Error Handling**: Graceful fallbacks for API failures
 
+## About
+
 Built by Tabugbo Chiagoziem Favour, a Laboratory Analyst turned on-chain data analyst.  This dashboard was created as a community resource for the ADI Chain ecosystem and as a practical showcase of Web3 analytics development.
 
 ## License
